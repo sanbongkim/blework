@@ -6,7 +6,7 @@
 //
 
 import Foundation
-
+ 
 struct InsDataModel {
     
     let index : UInt32

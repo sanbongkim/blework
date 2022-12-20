@@ -11,33 +11,36 @@ import CoreBluetooth
 class ViewController: UIViewController{
     
     var bluetoothManager:BluetoothManager? = nil
-    let nextVc = BleDataAnalyzer()
+    let dataAnalyzer = BleDataAnalyzer()
+    
+    @IBOutlet weak var tempLabel: UILabel!
+    @IBOutlet weak var humiLabel: UILabel!
+    @IBOutlet weak var freqLabel: UILabel!
+    
+    
     override func viewDidLoad() {
+        
         super.viewDidLoad()
         self.bluetoothManager = BluetoothManager.getInstance()
+    }
+    override func viewWillAppear(_ animated: Bool) {
         self.bluetoothManager!.delegate = self
-        // Do any additional setup after loading the view.
     }
-    @IBAction func testAction(_ sender: Any) {
-      
-//        nextVc.analyzer(text: "kkkkkkkkk")
-//        nextVc.completionHandler = { text in
-//        print(text)
-//        return text
-//        }
-    }
-    @IBAction func bleListActon(_ sender: Any) {
-        print("tap")
+    @IBAction func bleListAction(_ sender: Any) {
+  
         let storyboard: UIStoryboard? = UIStoryboard(name: "Main", bundle: Bundle.main)
         guard let bleVc = storyboard?.instantiateViewController(identifier: "BleVC") else{return}
-        bleVc.modalTransitionStyle = UIModalTransitionStyle.coverVertical
+        bleVc.modalPresentationStyle = .fullScreen
         self.present(bleVc, animated: true)
     }
 }
 extension ViewController : BluetoothDelegate{
     
     func didReadValueForCharacteristic(_ characteristic: CBCharacteristic) {
-        
+        let data  = dataAnalyzer.analyzer(characteristic)
+        tempLabel.text = String(format: "%.2f",  Double(Double(data.temp) / 10.0))
+        humiLabel.text = String(format: "%.2f",  Double(Double(data.humid) / 10.0))
+        freqLabel.text = String(data.frequency)
     }
     func didUpdateState(_ state: CBManagerState ) {
         switch state {
@@ -46,7 +49,7 @@ extension ViewController : BluetoothDelegate{
             
         case .poweredOn:
             print(" MainController -->State : poweredOn")
-           // bluetoothManager!.startScanPeripheral()
+            // bluetoothManager!.startScanPeripheral()
             
         case .poweredOff:
             print(" MainController -->State : Powered Off")
@@ -64,6 +67,7 @@ extension ViewController : BluetoothDelegate{
             
         }
     }
+    
 }
 
 

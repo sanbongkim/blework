@@ -8,9 +8,9 @@
 import CoreBluetooth
 public class BluetoothManager : NSObject, CBCentralManagerDelegate, CBPeripheralDelegate{
     
+    var scanHandlers: ((_ newDiscoveries: CBPeripheral) -> Void)?
     var _manager : CBCentralManager?
     var delegate : BluetoothDelegate?
-    let dataAnalyer = BleDataAnalyzer()
     private(set) var connected = false
     var state: CBManagerState? {
         guard _manager != nil else {
@@ -34,7 +34,7 @@ public class BluetoothManager : NSObject, CBCentralManagerDelegate, CBPeripheral
         super.init()
         initCBCentralManager()
     }
-    
+
     // MARK: Custom functions
     /**
     Initialize CBCentralManager instance
@@ -209,6 +209,10 @@ public class BluetoothManager : NSObject, CBCentralManagerDelegate, CBPeripheral
      */
     public func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber) {
        // print("Bluetooth Manager --> didDiscoverPeripheral, RSSI:\(RSSI)")
+        
+        
+        
+        
         delegate?.didDiscoverPeripheral?(peripheral, advertisementData: advertisementData, RSSI: RSSI)
     }
     
@@ -336,8 +340,7 @@ public class BluetoothManager : NSObject, CBCentralManagerDelegate, CBPeripheral
             return
         }
         
-        self.dataAnalyer.analyzer(characteristic)
-        //delegate?.didReadValueForCharacteristic?(characteristic)
+        delegate?.didReadValueForCharacteristic?(characteristic)
     }
     
 }

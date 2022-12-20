@@ -8,9 +8,12 @@
 import Foundation
 import CoreBluetooth
 
+
+
+
 class BleDataAnalyzer:NSObject{
     
-    func analyzer(_ characteristic: CBCharacteristic) {
+    func analyzer(_ characteristic: CBCharacteristic) -> InsDataModel {
         let value = Array<UInt8>(characteristic.value!)
         switch(value[4]){
         case Constant.CMD_INS_DATA_NOTIFY:
@@ -18,11 +21,12 @@ class BleDataAnalyzer:NSObject{
             let vfrequency = getUInt32(values: value, arrayIndex: 10)
             let vtemp = getUInt16(values: value, arrayIndex: 14)
             let vhumid = getUInt16(values: value, arrayIndex: 16)
-            InsDataModel(index: vindex, frequency: vfrequency, temp: vtemp, humid: vhumid)
-            
-            break
-        default:break
+            return InsDataModel(index: vindex, frequency: vfrequency, temp: vtemp, humid: vhumid)
+       
+        default:
+          return  InsDataModel(index: 0, frequency: 0, temp: 0, humid: 0)
         }
+      
     }
     public func getUInt32(values : [UInt8], arrayIndex : Int) -> UInt32{
         let returnValue = UInt32(values[arrayIndex]) << 24      |

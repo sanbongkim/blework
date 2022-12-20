@@ -54,9 +54,7 @@ extension ScBleListViewController: UITableViewDelegate,UITableViewDataSource,Blu
     func didDiscoverPeripheral(_ peripheral: CBPeripheral, advertisementData: [String : Any], RSSI: NSNumber){
         if peripheral.name != nil {
             print("peripheral"+"\(peripheral.identifier.uuidString)"+"\(peripheral.name!)")
-            if peripherals.contains(peripheral){
-            }
-            else{
+            if !peripherals.contains(peripheral){
                 peripherals.append(peripheral)
                 tableView.reloadData()
             }

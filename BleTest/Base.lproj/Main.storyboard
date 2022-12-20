@@ -17,34 +17,91 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rpo-5X-yRZ">
-                                <rect key="frame" x="159" y="409" width="75" height="34.333333333333314"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoDark" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rpo-5X-yRZ">
+                                <rect key="frame" x="259.66666666666669" y="59" width="123.33333333333331" height="34.333333333333343"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="34.329999999999998" id="gdS-vu-3aC"/>
+                                    <constraint firstAttribute="width" constant="123.33" id="nhi-Og-WX9"/>
+                                </constraints>
+                                <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Bluetooth"/>
                                 <connections>
-                                    <action selector="bleListActon:" destination="BYZ-38-t0r" eventType="touchUpInside" id="hV5-qI-QK6"/>
+                                    <action selector="bleListAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="WCO-bB-jf8"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="opa-Rl-VTX">
-                                <rect key="frame" x="168" y="463.33333333333331" width="57" height="35"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Test"/>
-                                <connections>
-                                    <action selector="testAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="H8j-BG-5kc"/>
-                                </connections>
-                            </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="28" translatesAutoresizingMaskIntoConstraints="NO" id="dmP-UJ-IWK">
+                                <rect key="frame" x="20" y="373.33333333333331" width="353" height="130.33333333333331"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="HWF-Xf-Xy7">
+                                        <rect key="frame" x="0.0" y="0.0" width="353" height="24"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="온도:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3z8-A0-LqE">
+                                                <rect key="frame" x="0.0" y="0.0" width="176.66666666666666" height="24"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jqb-nU-KvD">
+                                                <rect key="frame" x="176.66666666666663" y="0.0" width="176.33333333333337" height="24"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="8gW-EN-za2">
+                                        <rect key="frame" x="0.0" y="52.000000000000007" width="353" height="26.333333333333336"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="습도 :" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G5a-3s-0eg">
+                                                <rect key="frame" x="0.0" y="0.0" width="176.66666666666666" height="26.333333333333332"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XRS-ZY-8Ph">
+                                                <rect key="frame" x="176.66666666666663" y="0.0" width="176.33333333333337" height="26.333333333333332"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="Daz-kD-ldL">
+                                        <rect key="frame" x="0.0" y="106.33333333333337" width="353" height="24"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="주파수 :" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CEV-5K-Qgc">
+                                                <rect key="frame" x="0.0" y="0.0" width="176.66666666666666" height="24"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0XA-oz-8qg">
+                                                <rect key="frame" x="176.66666666666663" y="0.0" width="176.33333333333337" height="24"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="opa-Rl-VTX" firstAttribute="height" secondItem="Rpo-5X-yRZ" secondAttribute="height" multiplier="1.01942" id="Dwg-ld-W9I"/>
-                            <constraint firstItem="opa-Rl-VTX" firstAttribute="width" secondItem="Rpo-5X-yRZ" secondAttribute="width" multiplier="0.76" id="HI8-3B-ny9"/>
-                            <constraint firstItem="opa-Rl-VTX" firstAttribute="top" secondItem="Rpo-5X-yRZ" secondAttribute="bottom" constant="20" id="XCq-Wz-OLb"/>
-                            <constraint firstItem="Rpo-5X-yRZ" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="kpc-d6-dSk"/>
-                            <constraint firstItem="Rpo-5X-yRZ" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="nRn-zK-APM"/>
-                            <constraint firstItem="opa-Rl-VTX" firstAttribute="centerX" secondItem="Rpo-5X-yRZ" secondAttribute="centerX" id="oXq-hK-P8G"/>
+                            <constraint firstItem="dmP-UJ-IWK" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="2Bp-HT-O0o"/>
+                            <constraint firstItem="Rpo-5X-yRZ" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="RNE-yS-NRI"/>
+                            <constraint firstItem="dmP-UJ-IWK" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="Tq5-bQ-35L"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Rpo-5X-yRZ" secondAttribute="trailing" constant="10" id="U1e-CH-Rjb"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="dmP-UJ-IWK" secondAttribute="trailing" constant="20" id="sjo-Zf-qjg"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="freqLabel" destination="0XA-oz-8qg" id="qYI-zP-yqe"/>
+                        <outlet property="humiLabel" destination="XRS-ZY-8Ph" id="hbI-dA-UHb"/>
+                        <outlet property="tempLabel" destination="jqb-nU-KvD" id="hOY-ll-6L6"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
