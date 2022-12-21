@@ -21,7 +21,7 @@ public class BluetoothManager : NSObject, CBCentralManagerDelegate, CBPeripheral
     private var timeoutMonitor : Timer?     /// Timeout monitor of connect to peripheral
     private var interrogateMonitor : Timer? /// Timeout monitor of interrogate the peripheral
     private let notifCenter = NotificationCenter.default
-    private var isConnecting = false
+    private var isConnecting = false  //peripheral 용
     var logs = [String]()
     private(set) var connectedPeripheral : CBPeripheral?
     private(set) var connectedServices : [CBService]?
@@ -209,10 +209,6 @@ public class BluetoothManager : NSObject, CBCentralManagerDelegate, CBPeripheral
      */
     public func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber) {
        // print("Bluetooth Manager --> didDiscoverPeripheral, RSSI:\(RSSI)")
-        
-        
-        
-        
         delegate?.didDiscoverPeripheral?(peripheral, advertisementData: advertisementData, RSSI: RSSI)
     }
     
@@ -319,7 +315,7 @@ public class BluetoothManager : NSObject, CBCentralManagerDelegate, CBPeripheral
      */
     public func centralManager(_ central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: Error?) {
         print("Bluetooth Manager --> didDisconnectPeripheral")
-        connected = false
+        isConnecting = false
         self.delegate?.didDisconnectPeripheral?(peripheral)
         connectPeripheral(peripheral)
         

@@ -111,6 +111,7 @@
 		A5B9F0482947181100E529C8 /* BleTest */ = {
 			isa = PBXGroup;
 			children = (
+				A5D54A7B295185FA00DD6505 /* Model */,
 				A5B9F07D29471BAC00E529C8 /* Bluetooth */,
 				A5B9F0492947181100E529C8 /* AppDelegate.swift */,
 				A5B9F04B2947181100E529C8 /* SceneDelegate.swift */,
@@ -148,9 +149,16 @@
 				A5B9F07E29471BC700E529C8 /* BluetoothDelegate.swift */,
 				A5B9F07F29471BC700E529C8 /* BluetoothManager.swift */,
 				A5B9F0882948631700E529C8 /* BleDataAnalyzer.swift */,
-				A593A455294AFEA400944BDD /* InsDataModel.swift */,
 			);
 			path = Bluetooth;
+			sourceTree = "<group>";
+		};
+		A5D54A7B295185FA00DD6505 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				A593A455294AFEA400944BDD /* InsDataModel.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

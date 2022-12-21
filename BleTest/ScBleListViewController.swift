@@ -12,6 +12,7 @@ class ScBleListViewController: UIViewController{
     var bluetoothManager:BluetoothManager? = nil
     @IBOutlet weak var tableView: UITableView!
     override func viewDidLoad() {
+        
         super.viewDidLoad()
         self.bluetoothManager = BluetoothManager.getInstance()
         self.bluetoothManager!.delegate = self
@@ -21,15 +22,15 @@ class ScBleListViewController: UIViewController{
     }
     func scanPeripheral(){
         
+        
         self.bluetoothManager!.startScanPeripheral()
-        DispatchQueue.main.asyncAfter(deadline: .now() + 10.0) { [self] in
+        DispatchQueue.main.asyncAfter(deadline: .now() + 5.0) { [self] in
             self.bluetoothManager?.stopScanPeripheral()
         }
     }
 }
 extension ScBleListViewController: UITableViewDelegate,UITableViewDataSource,BluetoothDelegate{
     
-    // MARK: -테이블뷰 델리게이트
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 60
     }
@@ -63,7 +64,7 @@ extension ScBleListViewController: UITableViewDelegate,UITableViewDataSource,Blu
     func didDiscoverServices(_ peripheral: CBPeripheral){
         
         for service in peripheral.services! {
-           print("Service found with UUID: " + service.uuid.uuidString)
+            print("Service found with UUID: " + service.uuid.uuidString)
             if (service.uuid.uuidString == Constant.SEND_DATA_SERVICE_UUID) {
                 peripheral.discoverCharacteristics(nil, for: service)
                 break

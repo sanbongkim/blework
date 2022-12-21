@@ -8,9 +8,6 @@
 import Foundation
 import CoreBluetooth
 
-
-
-
 class BleDataAnalyzer:NSObject{
     
     func analyzer(_ characteristic: CBCharacteristic) -> InsDataModel {

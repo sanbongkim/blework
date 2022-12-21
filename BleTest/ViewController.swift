@@ -27,7 +27,7 @@ class ViewController: UIViewController{
         self.bluetoothManager!.delegate = self
     }
     @IBAction func bleListAction(_ sender: Any) {
-  
+        
         let storyboard: UIStoryboard? = UIStoryboard(name: "Main", bundle: Bundle.main)
         guard let bleVc = storyboard?.instantiateViewController(identifier: "BleVC") else{return}
         bleVc.modalPresentationStyle = .fullScreen
@@ -37,10 +37,11 @@ class ViewController: UIViewController{
 extension ViewController : BluetoothDelegate{
     
     func didReadValueForCharacteristic(_ characteristic: CBCharacteristic) {
-        let data  = dataAnalyzer.analyzer(characteristic)
-        tempLabel.text = String(format: "%.2f",  Double(Double(data.temp) / 10.0))
-        humiLabel.text = String(format: "%.2f",  Double(Double(data.humid) / 10.0))
-        freqLabel.text = String(data.frequency)
+        let data = dataAnalyzer.analyzer(characteristic)
+        DispatchQueue.main.async {
+            self.tempLabel.text = String(format: "%.2f",  Double(Double(data.temp) / 10.0))
+            self.humiLabel.text = String(format: "%.2f",  Double(Double(data.humid) / 10.0))}
+            self.freqLabel.text = String(data.frequency)
     }
     func didUpdateState(_ state: CBManagerState ) {
         switch state {
@@ -49,7 +50,6 @@ extension ViewController : BluetoothDelegate{
             
         case .poweredOn:
             print(" MainController -->State : poweredOn")
-            // bluetoothManager!.startScanPeripheral()
             
         case .poweredOff:
             print(" MainController -->State : Powered Off")

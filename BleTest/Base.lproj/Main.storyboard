@@ -31,7 +31,7 @@
                                 </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="28" translatesAutoresizingMaskIntoConstraints="NO" id="dmP-UJ-IWK">
-                                <rect key="frame" x="20" y="373.33333333333331" width="353" height="130.33333333333331"/>
+                                <rect key="frame" x="20" y="374.66666666666669" width="353" height="128"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="HWF-Xf-Xy7">
                                         <rect key="frame" x="0.0" y="0.0" width="353" height="24"/>
@@ -51,24 +51,24 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="8gW-EN-za2">
-                                        <rect key="frame" x="0.0" y="52.000000000000007" width="353" height="26.333333333333336"/>
+                                        <rect key="frame" x="0.0" y="52" width="353" height="24"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="습도 :" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G5a-3s-0eg">
-                                                <rect key="frame" x="0.0" y="0.0" width="176.66666666666666" height="26.333333333333332"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="176.66666666666666" height="24"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XRS-ZY-8Ph">
-                                                <rect key="frame" x="176.66666666666663" y="0.0" width="176.33333333333337" height="26.333333333333332"/>
-                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
+                                                <rect key="frame" x="176.66666666666663" y="0.0" width="176.33333333333337" height="24"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="Daz-kD-ldL">
-                                        <rect key="frame" x="0.0" y="106.33333333333337" width="353" height="24"/>
+                                        <rect key="frame" x="0.0" y="104" width="353" height="24"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="주파수 :" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CEV-5K-Qgc">
                                                 <rect key="frame" x="0.0" y="0.0" width="176.66666666666666" height="24"/>

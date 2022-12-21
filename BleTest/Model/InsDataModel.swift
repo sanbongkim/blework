@@ -14,3 +14,4 @@ struct InsDataModel {
     let temp : UInt16
     let humid : UInt16
 }
+
