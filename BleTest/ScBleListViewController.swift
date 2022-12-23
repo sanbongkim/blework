@@ -63,35 +63,41 @@ extension ScBleListViewController: UITableViewDelegate,UITableViewDataSource,Blu
     }
     func didDiscoverServices(_ peripheral: CBPeripheral){
         
-        for service in peripheral.services! {
-            print("Service found with UUID: " + service.uuid.uuidString)
-            if (service.uuid.uuidString == Constant.SEND_DATA_SERVICE_UUID) {
-                peripheral.discoverCharacteristics(nil, for: service)
-                break
+            for service in peripheral.services! {
+                print("Service found with UUID: " + service.uuid.uuidString)
+                if (service.uuid.uuidString == Constant.RECIEVE_DATA_SERVICE_TEST) {
+                    self.bluetoothManager?.connectedPeripheral!.discoverCharacteristics(nil, for: service)
+                }
+                    //Bluno Service
+                else if (service.uuid.uuidString == Constant.SEND_DATA_SERVICE_TEST) {
+                    self.bluetoothManager?.connectedPeripheral!.discoverCharacteristics(nil, for: service)
+                }
             }
-        }
+
     }
     func didDiscoverCharacteritics(_ service: CBService, pripheral: CBPeripheral) {
         
         print("didDiscoverCharacteristicsFor")
-        if (service.uuid.uuidString == Constant.SEND_DATA_SERVICE_UUID) {
+        if (service.uuid.uuidString ==   Constant.RECIEVE_DATA_SERVICE_TEST) {
             for characteristic in service.characteristics! {
-                print(characteristic.uuid.uuidString)
                 if characteristic.uuid.uuidString == Constant.RECIEVE_DATA_CHARACTERISTIC {
-                    bluetoothManager?.connectedPeripheral?.setNotifyValue(true, for: characteristic)
+                    self.bluetoothManager?.connectedPeripheral!.setNotifyValue(true, for: characteristic)
+                    self.bluetoothManager?.mainCharacteristic = characteristic
                     break
                 }
             }
         }
-        else if (service.uuid.uuidString == Constant.SEND_DATA_SERVICE_UUID) {
+        else if (service.uuid.uuidString == Constant.SEND_DATA_SERVICE_TEST) {
             for characteristic in service.characteristics! {
-                print(characteristic.uuid.uuidString)
                 if characteristic.uuid.uuidString == Constant.SEND_DATA_CHARACTERISTIC {
-                    bluetoothManager?.connectedPeripheral?.setNotifyValue(true, for: characteristic)
+                    self.bluetoothManager?.connectedPeripheral!.setNotifyValue(true, for: characteristic)
+                    self.bluetoothManager?.mainCharacteristic = characteristic
                     break
                 }
             }
+            
+            self.dismiss(animated: true)
         }
-        self.dismiss(animated: true)
+        
     }
 }

@@ -21,6 +21,7 @@ public class BluetoothManager : NSObject, CBCentralManagerDelegate, CBPeripheral
     private var timeoutMonitor : Timer?     /// Timeout monitor of connect to peripheral
     private var interrogateMonitor : Timer? /// Timeout monitor of interrogate the peripheral
     private let notifCenter = NotificationCenter.default
+    var mainCharacteristic:CBCharacteristic? = nil
     private var isConnecting = false  //peripheral 용
     var logs = [String]()
     private(set) var connectedPeripheral : CBPeripheral?
