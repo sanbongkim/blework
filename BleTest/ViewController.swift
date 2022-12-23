@@ -122,7 +122,6 @@ class ViewController: UIViewController{
             
         }
     }
-
     func recvDataSplit(values : [UInt8]) -> [UInt8]{
         var splitValue:[UInt8]=[]
         for i in (0 ... values.count-1).reversed(){
@@ -215,7 +214,7 @@ extension ViewController : BluetoothDelegate{
         case Constant.CMD_POWER_RESULT:
             let time = getCurrentTime()
             dataCount+=1
-            self.ref.child("users").child(String(dataCount)+": \(time)").setValue(["recvTime": time])
+          //  self.ref.child("users").child(String(dataCount)+": \(time)").setValue(["recvTime": time])
             self.requestSendNoti(seconds: 1.0)
             switch(((value[1] & 0xff) << 8) | (value[2] & 0xff)){
                

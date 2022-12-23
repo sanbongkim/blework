@@ -20,6 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UNUserNotificationCenter.current().delegate = self // <- 추가
         // Use Firebase library to configure APIs
         FirebaseApp.configure()
+        
         return true
     }
 
