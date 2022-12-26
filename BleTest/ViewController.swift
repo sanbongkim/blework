@@ -135,34 +135,18 @@ class ViewController: UIViewController{
 }
 extension ViewController : BluetoothDelegate{
     
-    
     func didDiscoverServices(_ peripheral: CBPeripheral){
-        
             for service in peripheral.services! {
                 print("Service found with UUID: " + service.uuid.uuidString)
-                if (service.uuid.uuidString == Constant.RECIEVE_DATA_SERVICE_TEST) {
+                if (service.uuid.uuidString == Constant.RECIEVE_DATA_SERVICE) {
                     self.bluetoothManager?.connectedPeripheral!.discoverCharacteristics(nil, for: service)
-                }
-                    //Bluno Service
-                else if (service.uuid.uuidString == Constant.SEND_DATA_SERVICE_TEST) {
-                    self.bluetoothManager?.connectedPeripheral!.discoverCharacteristics(nil, for: service)
-                }
-            }
-
-    }
-    func didDiscoverCharacteritics(_ service: CBService, pripheral: CBPeripheral) {
-        
-        print("didDiscoverCharacteristicsFor")
-        if (service.uuid.uuidString ==   Constant.RECIEVE_DATA_SERVICE_TEST) {
-            for characteristic in service.characteristics! {
-                if characteristic.uuid.uuidString == Constant.RECIEVE_DATA_CHARACTERISTIC {
-                    self.bluetoothManager?.connectedPeripheral!.setNotifyValue(true, for: characteristic)
-                    self.bluetoothManager?.mainCharacteristic = characteristic
                     break
                 }
             }
-        }
-        else if (service.uuid.uuidString == Constant.SEND_DATA_SERVICE_TEST) {
+    }
+    func didDiscoverCharacteritics(_ service: CBService, pripheral: CBPeripheral) {
+        print("didDiscoverCharacteristicsFor")
+        if (service.uuid.uuidString ==   Constant.RECIEVE_DATA_SERVICE) {
             for characteristic in service.characteristics! {
                 if characteristic.uuid.uuidString == Constant.SEND_DATA_CHARACTERISTIC {
                     self.bluetoothManager?.connectedPeripheral!.setNotifyValue(true, for: characteristic)
@@ -170,15 +154,9 @@ extension ViewController : BluetoothDelegate{
                     break
                 }
             }
-            
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                print("Constant.CMD_INIT_MODULE")
-                self.sendProtocol(peripheral:  (self.bluetoothManager?.connectedPeripheral)! ,type: 0,cmd: Constant.CMD_INIT_MODULE, what: 0)
-            }
         }
-        
-    }
-    
+ }
+
     func getCurrentTime()->String{
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"

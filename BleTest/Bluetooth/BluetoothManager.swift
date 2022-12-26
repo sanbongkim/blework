@@ -57,7 +57,8 @@ public class BluetoothManager : NSObject{
      The method provides for starting scan near by peripheral
      */
     func startScanPeripheral() {
-        _manager?.scanForPeripherals(withServices: nil, options: [CBCentralManagerScanOptionAllowDuplicatesKey:true])
+        let BLEServiceUUID = CBUUID(string: Constant.RECIEVE_DATA_SERVICE)
+        _manager?.scanForPeripherals(withServices: [BLEServiceUUID], options: [CBCentralManagerScanOptionAllowDuplicatesKey:true])
     }
     /**
      The method provides for stopping scan near by peripheral
@@ -334,5 +335,9 @@ public class BluetoothManager : NSObject{
 }
 extension BluetoothManager:  CBCentralManagerDelegate, CBPeripheralDelegate{
     
-    
+    public func centralManager(_ central: CBCentralManager, willRestoreState dict: [String : Any]) {
+        
+        print("centralManager will restore connection")
+
+    }
 }
