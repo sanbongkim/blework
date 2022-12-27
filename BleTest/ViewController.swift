@@ -156,7 +156,16 @@ extension ViewController : BluetoothDelegate{
             }
         }
  }
+    func didReadValueForCharacteristic(_ characteristic: CBCharacteristic) {
+        let time = getCurrentTime()
+        if(dataCount % 5 == 0){
+            self.ref.child("users").child("\(time)").setValue(["recvTime": time])
+        }
+        dataCount+=1
+        
+        
 
+    }
     func getCurrentTime()->String{
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
@@ -164,52 +173,7 @@ extension ViewController : BluetoothDelegate{
        return current_date_string
         
     }
-    func didReadValueForCharacteristic(_ characteristic: CBCharacteristic) {
-        let originalValues = Array<UInt8>(characteristic.value!)
-        print(originalValues)
-        
-        let value = recvDataSplit(values: originalValues)
-        if value.count == 0 { return}
-        switch (value[value.count-2]) {
-        case Constant.CMD_INIT_MODULE:
-            self.sendProtocol(peripheral:(bluetoothManager?.connectedPeripheral!)!,type:5,cmd:Constant.CMD_SENSOR_TYPE,what:0)
-            
-            break
-        case Constant.CMD_SENSOR_TYPE:
-            if value[value.count-2-1] == Constant.ACK {
-                sendProtocol(peripheral:(bluetoothManager?.connectedPeripheral!)! ,type:0,cmd: Constant.CMD_SEND_MODULE_DIRECTION,what: 0)
-            }
-        case Constant.CMD_SEND_MODULE_DIRECTION:
-            sendProtocol(peripheral:(bluetoothManager?.connectedPeripheral!)! ,type:0,cmd: Constant.CMD_COUNT_START,what: 0)
-            break
-        case 0x37:
-            sendProtocol(peripheral:(bluetoothManager?.connectedPeripheral!)! ,type:0,cmd: Constant.CMD_COUNT_START,what: 0)
-            print("CMD_SEND_MODULE_DIRECTION")
-            break
-        case Constant.CMD_COUNT_START:
-            print("CMD_COUNT_START")
-            break
-        case Constant.CMD_POWER_RESULT:
-            let time = getCurrentTime()
-            dataCount+=1
-          //  self.ref.child("users").child(String(dataCount)+": \(time)").setValue(["recvTime": time])
-            self.requestSendNoti(seconds: 1.0)
-            switch(((value[1] & 0xff) << 8) | (value[2] & 0xff)){
-               
-            case 1:
-                self.tempLabel.text = "약해약해"
-                break
-            case 2:
-                self.tempLabel.text = "좀더좀더"
-                break
-            case 3:
-                self.tempLabel.text = "아주좋아!!! 더 흔들어"
-                break
-            default:
-                break}
-        default:break
-        }
-    }
+    
     func didUpdateState(_ state: CBManagerState ) {
         switch state {
         case .resetting:
