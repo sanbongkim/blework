@@ -184,7 +184,7 @@ public class BluetoothManager : NSObject{
         case .poweredOff:
             print("State : Powered Off")
         case .poweredOn:
-            print("State : Powered On")
+            print("State : ====================Powered On====================")
         case .resetting:
             print("State : Resetting")
         case .unauthorized:

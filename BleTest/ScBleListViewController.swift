@@ -22,7 +22,6 @@ class ScBleListViewController: UIViewController{
     }
     func scanPeripheral(){
         
-        
         self.bluetoothManager!.startScanPeripheral()
         DispatchQueue.main.asyncAfter(deadline: .now() + 5.0) { [self] in
             self.bluetoothManager?.stopScanPeripheral()

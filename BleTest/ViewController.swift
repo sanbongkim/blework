@@ -155,7 +155,7 @@ extension ViewController : BluetoothDelegate{
                 }
             }
         }
- }
+    }
     func didReadValueForCharacteristic(_ characteristic: CBCharacteristic) {
         let time = getCurrentTime()
         if(dataCount % 5 == 0){
